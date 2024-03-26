@@ -14,18 +14,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val lista = findViewById<RecyclerView>(R.id.rvLista)
+        val adapter = ListaAdapter(texto)
+        lista.layoutManager = LinearLayoutManager(this)
+        lista.adapter = adapter
+
         val boton: Button = findViewById(R.id.btnBoton)
         boton.setOnClickListener {
             agregar()
-
-            val lista = findViewById<RecyclerView>(R.id.rvLista)
-            val adapter = ListaAdapter(texto)
-            lista.layoutManager = LinearLayoutManager(this)
-            lista.adapter = adapter
+            adapter.notifyDataSetChanged()
         }
 
     }
-
     private fun agregar() {
         texto.add("")
     }
